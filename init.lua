@@ -61,7 +61,7 @@ vim.opt.scrolloff = 10
 
 vim.schedule(function()
   -- Sync clipboard between OS and Neovim
-  vim.opt.clipboard = 'unnamedplus'
+  --vim.opt.clipboard = 'unnamedplus'
 end)
 
 -------------------------------
@@ -205,6 +205,7 @@ require('lazy').setup({
 	}
       end,
     },
+    -- PERF: Syntex highlights and other things
     {
       "nvim-treesitter/nvim-treesitter",
       build = ":TSUpdate",
@@ -221,6 +222,10 @@ require('lazy').setup({
 	  enable = true,
 	},
       },
+    },
+    -- NOTE: Game practice
+    {
+      "ThePrimeagen/vim-be-good"
     },
 
     ---- [[ config ]] ----
