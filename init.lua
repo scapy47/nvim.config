@@ -104,19 +104,18 @@ require('lazy').setup({
             enabled = false,
             lazy = false,
             priority = 1000,
-            opts = {},
             config = function()
                 vim.cmd.colorscheme "cyberdream"
             end,
         },
         {
-            "tiagovla/tokyodark.nvim",
-            enabled = true,
-            opts = {},
-            lazy = false,
+            "catppuccin/nvim",
+            name = 'catppuccin',
             priority = 1000,
+            enabled = true,
+            lazy = false,
             config = function()
-                vim.cmd.colorscheme "tokyodark"
+                vim.cmd.colorscheme "catppuccin"
             end,
         },
 
