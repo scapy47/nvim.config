@@ -223,7 +223,7 @@ require('lazy').setup({
                 },
             },
         },
-        -- NOTE: Game practice
+        -- NOTE: Game for practice
         {
             "ThePrimeagen/vim-be-good"
         },
