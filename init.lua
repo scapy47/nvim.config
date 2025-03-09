@@ -180,6 +180,12 @@ require('lazy').setup({
                 "hrsh7th/cmp-buffer",
                 "hrsh7th/cmp-path",
                 "hrsh7th/cmp-nvim-lua",
+
+                {
+                    "L3MON4D3/LuaSnip",
+                    build = "make install_jsregexp"
+                },
+                "saadparwaiz1/cmp_luasnip"
             },
             config = function()
                 local cmp = require "cmp"
@@ -193,12 +199,14 @@ require('lazy').setup({
                     },
                     sources = {
                         { name = "nvim_lsp" },
-                        { name = "buffer",  keyword_length = 5 },
+                        { name = "buffer",  keyword_length = 4 },
                         { name = "path" },
                         { name = "nvim_lua" },
+                        { name = 'luasnip' }
                     },
                     snippet = {
                         expand = function(args)
+                            require("luasnip").lsp_expand(args.body)
                         end
                     },
                 }
@@ -231,7 +239,7 @@ require('lazy').setup({
         { import = "plugins" },
 
     },
-    checker = { enabled = true },
+    checker = { enabled = true }
 })
 
 -- require("lazy").update({ show = true })
@@ -246,5 +254,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
     callback = function()
         vim.highlight.on_yank()
-    end,
+    end
 })
