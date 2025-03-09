@@ -45,9 +45,9 @@ vim.opt.timeoutlen = 300
 --  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = {
-	tab = '» ',
-	trail = '·',
-	nbsp = '␣'
+    tab = '» ',
+    trail = '·',
+    nbsp = '␣'
 }
 
 -- Preview substitutions live, as you type!
@@ -60,8 +60,8 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 vim.schedule(function()
-  -- Sync clipboard between OS and Neovim
-  --vim.opt.clipboard = 'unnamedplus'
+    -- Sync clipboard between OS and Neovim
+    --vim.opt.clipboard = 'unnamedplus'
 end)
 
 -------------------------------
@@ -75,164 +75,164 @@ end)
 -- [[ `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-  local out = vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    '--branch=stable',
-    lazyrepo,
-    lazypath
-  }
-  if vim.v.shell_error ~= 0 then
-    error('Error cloning lazy.nvim:\n' .. out)
-  end
-end  ---@diagnostic disable-next-line: undefined-field
+    local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+    local out = vim.fn.system {
+        'git',
+        'clone',
+        '--filter=blob:none',
+        '--branch=stable',
+        lazyrepo,
+        lazypath
+    }
+    if vim.v.shell_error ~= 0 then
+        error('Error cloning lazy.nvim:\n' .. out)
+    end
+end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ lazy.nvim and plugins setup ]]
 require('lazy').setup({
-  spec = {
+    spec = {
 
-    ---- [[ plugins ]] ----
+        ---- [[ plugins ]] ----
 
-    'tpope/vim-sleuth',
+        'tpope/vim-sleuth',
 
-    -- PERF: Theme
-    {
-      "scottmckendry/cyberdream.nvim",
-      enabled = false,
-      lazy = false,
-      priority = 1000,
-      opts = {},
-      config = function()
-	vim.cmd.colorscheme "cyberdream"
-      end,
+        -- PERF: Theme
+        {
+            "scottmckendry/cyberdream.nvim",
+            enabled = false,
+            lazy = false,
+            priority = 1000,
+            opts = {},
+            config = function()
+                vim.cmd.colorscheme "cyberdream"
+            end,
+        },
+        {
+            "tiagovla/tokyodark.nvim",
+            enabled = true,
+            opts = {},
+            lazy = false,
+            priority = 1000,
+            config = function()
+                vim.cmd.colorscheme "tokyodark"
+            end,
+        },
+
+        -- PERF: Icons
+        { 'nvim-tree/nvim-web-devicons', lazy = true },
+
+        -- PERF: Highlight comments
+        {
+            "folke/todo-comments.nvim",
+            event = 'VimEnter',
+            dependencies = { "nvim-lua/plenary.nvim" },
+            opts = { signs = true }
+        },
+
+        -- PERF: LSP
+        {
+            'neovim/nvim-lspconfig',
+            -- priority = 0,
+            dependencies = {
+                {
+                    'williamboman/mason.nvim',
+                    dependencies = {
+                        'williamboman/mason-lspconfig.nvim',
+                        'WhoIsSethDaniel/mason-tool-installer.nvim'
+                    },
+                    opts = {}
+                },
+                {
+                    'j-hui/fidget.nvim',
+                    opts = {
+                        notification = {
+                            window = {
+                                winblend = 40,
+                                border = "rounded",
+                            },
+                        }
+                    }
+                },
+                {
+                    "folke/lazydev.nvim",
+                    ft = "lua", -- only load on lua files
+                    opts = {
+                        library = {
+                            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                        },
+                    },
+                },
+            },
+            config = function()
+                local lspconfig = require('lspconfig')
+                lspconfig.lua_ls.setup {}
+
+                require "config.lspconfig"
+            end
+        },
+
+        -- PERF: Autocompletion
+        {
+            "hrsh7th/nvim-cmp",
+            dependencies = {
+                "hrsh7th/cmp-nvim-lsp",
+                "hrsh7th/cmp-buffer",
+                "hrsh7th/cmp-path",
+                "hrsh7th/cmp-nvim-lua",
+            },
+            config = function()
+                local cmp = require "cmp"
+                cmp.setup {
+                    mapping = cmp.mapping.preset.insert {
+
+                        ['<C-n>'] = cmp.mapping.select_next_item(),
+                        ['<C-p>'] = cmp.mapping.select_prev_item(),
+                        ['<C-y>'] = cmp.mapping.confirm { select = true },
+
+                    },
+                    sources = {
+                        { name = "nvim_lsp" },
+                        { name = "buffer",  keyword_length = 5 },
+                        { name = "path" },
+                        { name = "nvim_lua" },
+                    },
+                    snippet = {
+                        expand = function(args)
+                        end
+                    },
+                }
+            end,
+        },
+        -- PERF: Syntex highlights and other things
+        {
+            "nvim-treesitter/nvim-treesitter",
+            build = ":TSUpdate",
+            main = "nvim-treesitter.configs",
+            opts = {
+                ensure_installed = { "lua", "vim", "vimdoc" },
+                auto_install = true,
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = { 'ruby' },
+                },
+                indent = { enable = true, disable = { 'ruby' } },
+                rainbow = {
+                    enable = true,
+                },
+            },
+        },
+        -- NOTE: Game practice
+        {
+            "ThePrimeagen/vim-be-good"
+        },
+
+        ---- [[ config ]] ----
+        { import = "plugins" },
+
     },
-    {
-      "tiagovla/tokyodark.nvim",
-      enabled = true,
-      opts = {},
-      lazy = false,
-      priority = 1000,
-      config = function()
-	vim.cmd.colorscheme "tokyodark"
-      end,
-    },
-
-    -- PERF: Icons
-    {'nvim-tree/nvim-web-devicons', lazy = true},
-
-    -- PERF: Highlight comments
-    {
-      "folke/todo-comments.nvim",
-      event = 'VimEnter',
-      dependencies = { "nvim-lua/plenary.nvim" },
-      opts = {signs = true}
-    },
-
-    -- PERF: LSP
-    {
-      'neovim/nvim-lspconfig',
-      -- priority = 0,
-      dependencies = {
-	{
-	  'williamboman/mason.nvim',
-	  dependencies = {
-	    'williamboman/mason-lspconfig.nvim',
-	    'WhoIsSethDaniel/mason-tool-installer.nvim'
-	  },
-	  opts = {}
-	},
-	{
-	  'j-hui/fidget.nvim',
-	  opts = {
-	    notification = {
-	      window = {
-		winblend = 40,
-		border = "rounded",
-	      },
-	    }
-	  }
-	},
-	{
-	  "folke/lazydev.nvim",
-	  ft = "lua", -- only load on lua files
-	  opts = {
-	    library = {
-	      { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-	    },
-	  },
-	},
-      },
-      config = function()
-	local lspconfig = require('lspconfig')
-	lspconfig.lua_ls.setup{}
-
-	require "config.lspconfig"
-      end
-    },
-
-    -- PERF: Autocompletion
-    {
-      "hrsh7th/nvim-cmp",
-      dependencies = {
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-path",
-	"hrsh7th/cmp-nvim-lua",
-      },
-      config = function()
-	local cmp = require "cmp"
-	cmp.setup {
-	  mapping = cmp.mapping.preset.insert {
-
-	    ['<C-n>'] = cmp.mapping.select_next_item(),
-	    ['<C-p>'] = cmp.mapping.select_prev_item(),
-	    ['<C-y>'] = cmp.mapping.confirm { select = true },
-
-	  },
-	  sources = {
-	    { name = "nvim_lsp" },
-	    { name = "buffer" , keyword_length = 5},
-	    { name = "path" },
-	    { name = "nvim_lua" },
-	  },
-	  snippet = {
-	    expand = function (args)
-	    end
-	  },
-	}
-      end,
-    },
-    -- PERF: Syntex highlights and other things
-    {
-      "nvim-treesitter/nvim-treesitter",
-      build = ":TSUpdate",
-      main = "nvim-treesitter.configs",
-      opts = {
-	ensure_installed = { "lua", "vim", "vimdoc" },
-	auto_install = true,
-	highlight = {
-	  enable = true,
-	  additional_vim_regex_highlighting = { 'ruby' },
-	},
-	indent = { enable = true, disable = { 'ruby' } },
-	rainbow = {
-	  enable = true,
-	},
-      },
-    },
-    -- NOTE: Game practice
-    {
-      "ThePrimeagen/vim-be-good"
-    },
-
-    ---- [[ config ]] ----
-    { import = "plugins" },
-
-  },
-  checker = { enabled = true },
+    checker = { enabled = true },
 })
 
 -- require("lazy").update({ show = true })
@@ -243,9 +243,9 @@ require('lazy').setup({
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+    desc = 'Highlight when yanking (copying) text',
+    group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
 })
