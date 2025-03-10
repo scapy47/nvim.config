@@ -232,7 +232,8 @@ require('lazy').setup({
         },
         -- NOTE: Game for practice
         {
-            "ThePrimeagen/vim-be-good"
+            "ThePrimeagen/vim-be-good",
+            cmd = { "VimBeGood" }
         },
 
         ---- [[ config ]] ----
