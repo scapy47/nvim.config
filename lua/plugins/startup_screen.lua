@@ -1,6 +1,7 @@
 return {
     {
         'goolord/alpha-nvim',
+        event = "VimEnter",
         config = function()
             local dashboard = require "alpha.themes.dashboard"
 
@@ -26,6 +27,10 @@ return {
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⡇⣿⣿⢸⣿⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⠇⢿⡿⢸⡿⠀⠿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]]
 
+            dashboard.section.buttons.val = {}
+            dashboard.section.footer.val = {
+                "One batch, two batch, Penny, and Dime."
+            }
             require("alpha").setup(dashboard.config)
         end
     },
