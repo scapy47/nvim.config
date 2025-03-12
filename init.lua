@@ -138,7 +138,6 @@ require('lazy').setup({
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-nvim-lua",
-
             {
                 "L3MON4D3/LuaSnip",
                 build = "make install_jsregexp"
@@ -196,11 +195,11 @@ require('lazy').setup({
         dependencies = {
             {
                 'williamboman/mason.nvim',
+                opts = {},
                 dependencies = {
                     'williamboman/mason-lspconfig.nvim',
                     'WhoIsSethDaniel/mason-tool-installer.nvim'
                 },
-                opts = {}
             },
             {
                 'j-hui/fidget.nvim',
