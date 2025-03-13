@@ -153,6 +153,7 @@ require('lazy').setup({
                     ['<C-p>'] = cmp.mapping.select_prev_item(),
                     ['<C-y>'] = cmp.mapping.confirm { select = true },
 
+                    require("config.keymap").completion()
                 },
                 sources = {
                     { name = "nvim_lsp" },
