@@ -23,7 +23,6 @@ local servers = {
     clangd = {}
 }
 
--- TODO: add mason-tool-installer
 
 for server_name, config in pairs(servers) do
     config.on_attach = on_attach
