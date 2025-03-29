@@ -107,23 +107,25 @@ require('lazy').setup({
     'tpope/vim-sleuth',
 
     -- PERF: Theme
+
     {
-        "scottmckendry/cyberdream.nvim",
-        enabled = false,
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.cmd.colorscheme "cyberdream"
-        end,
-    },
-    {
-        "catppuccin/nvim",
-        name = 'catppuccin',
+        "diegoulloao/neofusion.nvim",
         priority = 1000,
         enabled = true,
         lazy = false,
+        opts = {},
         config = function()
-            vim.cmd.colorscheme "catppuccin"
+            vim.cmd.colorscheme "neofusion"
+        end,
+    },
+    {
+        "scottmckendry/cyberdream.nvim",
+        priority = 1000,
+        enabled = false,
+        lazy = false,
+        opts = {},
+        config = function()
+            vim.cmd.colorscheme "cyberdream"
         end,
     },
 
@@ -243,7 +245,6 @@ require('lazy').setup({
     -- PERF: showing available keybindings in a popup as you type
     {
         "folke/which-key.nvim",
-        enabled = false,
         event = "VeryLazy",
         opts = {},
         keys = {
@@ -271,7 +272,8 @@ require('lazy').setup({
         enabled = true,
         frequency = 21600, -- check every 6hr
         auto_install = true,
-    }
+    },
+    ui = {}
 })
 
 -- require("lazy").update({ show = true })
