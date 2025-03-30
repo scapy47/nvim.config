@@ -32,5 +32,13 @@ return {
         opts = {
             lsp = "clangd"
         }
+    },
+    -- PERF: notification
+    {
+        "rcarriga/nvim-notify",
+        event = "VeryLazy",
+        config = function()
+            vim.notify = require("notify")
+        end
     }
 }
