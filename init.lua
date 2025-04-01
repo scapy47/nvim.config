@@ -214,18 +214,6 @@ require('lazy').setup({
                 },
             },
             {
-                'j-hui/fidget.nvim',
-                enabled=false,
-                opts = {
-                    notification = {
-                        window = {
-                            winblend = 40,
-                            border = "rounded",
-                        },
-                    }
-                }
-            },
-            {
                 "folke/lazydev.nvim",
                 ft = "lua", -- only load on lua files
                 opts = {
