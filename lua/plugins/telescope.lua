@@ -22,7 +22,8 @@ return {
             extensions = {
                 ['ui-select'] = {
                     require('telescope.themes').get_dropdown()
-                }
+                },
+                ['fzf'] = {}
             }
         }
         pcall(require('telescope').load_extension, 'fzf')
