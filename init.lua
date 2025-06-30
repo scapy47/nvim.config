@@ -109,9 +109,29 @@ require('lazy').setup({
     -- PERF: Theme
 
     {
-        "diegoulloao/neofusion.nvim",
+        "DonJulve/NeoCyberVim",
         priority = 1000,
         enabled = true,
+        lazy = false,
+        opts = {
+                transparent = true,
+                italics = {
+                    comments = false,
+                    keywords = false,
+                    functions = false, 
+                    strings = false, 
+                    variables = false,
+                },
+                overrides = {}
+        },
+        config = function()
+            vim.cmd.colorscheme "NeoCyberVim"
+        end,
+    },
+    {
+        "diegoulloao/neofusion.nvim",
+        priority = 1000,
+        enabled = false,
         lazy = false,
         opts = {},
         config = function()
