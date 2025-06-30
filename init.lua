@@ -78,7 +78,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 require("config.keymap").global()
 
 -------------------------------
--- Install plugins & packages
+-- Plugins Manager & Plugins
 -------------------------------
 
 -- [[ `lazy.nvim` plugin manager ]]
@@ -109,7 +109,7 @@ require('lazy').setup({
     -- PERF: Theme
 
     {
-        "DonJulve/NeoCyberVim",
+        "Scapy47/SCARLET.nvim",
         priority = 1000,
         enabled = true,
         lazy = false,
