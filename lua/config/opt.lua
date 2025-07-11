@@ -1,0 +1,4 @@
+---@type vim.opt
+return {
+  
+}
