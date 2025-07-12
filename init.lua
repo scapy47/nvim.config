@@ -66,7 +66,7 @@ end)
 
 -- load options from options file (opt.lua)
 for k, v in pairs(require "config.opt" or {}) do
-  vim.opt[k] = v
+    vim.opt[k] = v
 end
 
 -------------------------------
@@ -119,15 +119,15 @@ require('lazy').setup({
         enabled = true,
         lazy = false,
         opts = {
-                transparent = true,
-                italics = {
-                    comments = false,
-                    keywords = false,
-                    functions = false, 
-                    strings = false, 
-                    variables = false,
-                },
-                overrides = {}
+            transparent = true,
+            italics = {
+                comments = false,
+                keywords = false,
+                functions = false,
+                strings = false,
+                variables = false,
+            },
+            overrides = {}
         },
         config = function()
             vim.cmd.colorscheme "NeoCyberVim"
