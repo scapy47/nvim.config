@@ -45,5 +45,11 @@ return {
             dashboard = require "config.startup_screen"
         }
     },
-    -- { "echasnovski/mini.files", opts = {} }
+    {
+        "A7Lavinraj/fyler.nvim",
+        branch = "stable",
+        opts = {
+            icon_provider = "nvim-web-devicons"
+        }
+    }
 }
