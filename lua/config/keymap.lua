@@ -1,6 +1,6 @@
 return {
     global = function()
-        vim.keymap.set('n', '<leader>e', ':Fyler kind=split:rightmost<CR>', { desc = '[E]xplore file tree' })
+        vim.keymap.set('n', '<leader>e', '<cmd>Fyler kind=split:rightmost<CR>', { desc = '[E]xplore file tree' })
     end,
     telescope = function()
         local builtin = require 'telescope.builtin'

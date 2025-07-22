@@ -49,7 +49,29 @@ return {
         "A7Lavinraj/fyler.nvim",
         branch = "stable",
         opts = {
-            icon_provider = "nvim-web-devicons"
+            icon_provider = "nvim-web-devicons",
+            views = {
+                explorer = {
+                    width = 0.45,
+                    height = 0.8,
+                    kind = "float",
+                    border = "rounded",
+                },
+                confirm = {
+                    width = 0.8,
+                    height = 0.2,
+                    kind = "float",
+                    border = "rounded",
+                },
+            },
+            mappings = {
+                explorer = {
+                    n = {
+                        ["<Esc><Esc>"] = "CloseView",
+                        ["<CR>"] = "Select",
+                    }
+                }
+            }
         }
     }
 }
