@@ -180,10 +180,15 @@ require('lazy').setup({
                 "L3MON4D3/LuaSnip",
                 build = "make install_jsregexp",
                 dependencies = {
-                    ---[[ snippet engine to completion engine/framework adapter]]
+                    ---[[ snippet engine to completion engine/framework adapter ]]
                     "saadparwaiz1/cmp_luasnip",
-                    ---[[ snippets library ]]
-                    "rafamadriz/friendly-snippets"
+                    {
+                        ---[[ snippets library ]]
+                        "rafamadriz/friendly-snippets",
+                        config = function()
+                            require("luasnip.loaders.from_vscode").lazy_load()
+                        end
+                    }
                 }
             },
         },
@@ -203,7 +208,7 @@ require('lazy').setup({
                     { name = "buffer",  keyword_length = 4 },
                     { name = "path" },
                     { name = "nvim_lua" },
-                    { name = 'luasnip' }
+                    { name = 'luasnip', keyword_length = 2 }
                 },
                 snippet = {
                     expand = function(args)
