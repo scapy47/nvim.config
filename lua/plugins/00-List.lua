@@ -9,6 +9,7 @@ return {
     -- PERF: cursor animation
     {
         "sphamba/smear-cursor.nvim",
+        enabled = false,
         event = 'VimEnter',
         opts = {}
     },
@@ -41,7 +42,7 @@ return {
             notifier = {},
             indent = {},
             bigfile = {},
-            scroll = {},
+            -- scroll = {},
             dashboard = require "config.startup_screen"
         }
     },
