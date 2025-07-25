@@ -53,7 +53,7 @@ return {
             icon_provider = "nvim-web-devicons",
             views = {
                 explorer = {
-                    width = 0.45,
+                    width = 0.3,
                     height = 0.8,
                     kind = "float",
                     border = "rounded",
