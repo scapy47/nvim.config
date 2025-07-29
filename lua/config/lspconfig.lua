@@ -19,7 +19,24 @@ end
 
 
 local servers = {
-    lua_ls = {},
+    lua_ls = {
+        settings = {
+            Lua = {
+                runtime = {
+                    version = 'LuaJIT',
+                },
+                diagnostics = {
+                    globals = { 'vim' },
+                },
+                workspace = {
+                    library = {
+                        vim.fn.expand('$VIMRUNTIME/lua'),
+                        vim.fn.stdpath('config') .. '/lua',
+                    },
+                },
+            },
+        },
+    },
     clangd = {}
 }
 
