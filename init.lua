@@ -23,7 +23,7 @@ vim.opt.wrap = true
 -- prevent words splitting
 vim.opt.linebreak = true
 -- line break indicator
-vim.opt.showbreak = "↪"
+vim.opt.showbreak = "➥"
 -- Enable break indent
 vim.opt.breakindent = true
 -- Save undo history
@@ -45,8 +45,10 @@ vim.opt.timeoutlen = 300
 --  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = {
-    tab = '» ',
-    trail = '·',
+    tab = '⇔ ',
+    trail = '●',
+    extends = '»',
+    precedes = '«',
     nbsp = '␣'
 }
 
@@ -70,7 +72,7 @@ for k, v in pairs(require "config.opt" or {}) do
 end
 
 -------------------------------
--- Basic Keymaps
+-- Keymaps
 -------------------------------
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -165,7 +167,7 @@ require('lazy').setup({
         opts = { signs = true }
     },
 
-    -- PERF: Autocompletion
+    -- PERF: Completion
     {
         "hrsh7th/nvim-cmp",
         event = 'InsertEnter',
@@ -223,18 +225,21 @@ require('lazy').setup({
         end,
     },
 
-    -- PERF: Syntex highlights and other
+    -- PERF: Syntex Parsing
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         main = "nvim-treesitter.configs",
         opts = {
-            ensure_installed = { 'bash', 'c', 'diff', 'html', 'css', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
             auto_install = true,
+            ensure_installed = { 'bash', 'c', 'diff', 'html', 'css', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+            
+            -- PERF: Syntax highlighting
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = { 'ruby' },
             },
+            -- PREF: Indentation
             indent = { enable = true, disable = { 'ruby' } },
         },
     },
