@@ -47,8 +47,8 @@ vim.opt.list = true
 vim.opt.listchars = {
     tab = '⇔ ',
     trail = '●',
-    extends = '»',
-    precedes = '«',
+    extends = '❱',
+    precedes = '❰',
     nbsp = '␣'
 }
 
@@ -233,7 +233,7 @@ require('lazy').setup({
         opts = {
             auto_install = true,
             ensure_installed = { 'bash', 'c', 'diff', 'html', 'css', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
-            
+
             -- PERF: Syntax highlighting
             highlight = {
                 enable = true,
