@@ -155,6 +155,16 @@ require('lazy').setup({
             vim.cmd.colorscheme "cyberdream"
         end,
     },
+    {
+        "Zeioth/neon.nvim",
+        priority = 1000,
+        enabled = false,
+        lazy = false,
+        opts = {},
+        config = function()
+            vim.cmd.colorscheme "neon-cherrykiss-night"
+        end,
+    },
 
     -- PERF: Icons
     { 'nvim-tree/nvim-web-devicons', lazy = true },
