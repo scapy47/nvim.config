@@ -116,53 +116,18 @@ require('lazy').setup({
     -- PERF: Theme
 
     {
-        "Scapy47/SCARLET.nvim",
+        "rijulpaul/nightblossom.nvim",
         priority = 1000,
         enabled = true,
         lazy = false,
         opts = {
             transparent = true,
-            italics = {
-                comments = false,
-                keywords = false,
-                functions = false,
-                strings = false,
-                variables = false,
+            integrations = {
+                treesitter = true,
             },
-            overrides = {}
         },
         config = function()
-            vim.cmd.colorscheme "NeoCyberVim"
-        end,
-    },
-    {
-        "diegoulloao/neofusion.nvim",
-        priority = 1000,
-        enabled = false,
-        lazy = false,
-        opts = {},
-        config = function()
-            vim.cmd.colorscheme "neofusion"
-        end,
-    },
-    {
-        "scottmckendry/cyberdream.nvim",
-        priority = 1000,
-        enabled = false,
-        lazy = false,
-        opts = {},
-        config = function()
-            vim.cmd.colorscheme "cyberdream"
-        end,
-    },
-    {
-        "Zeioth/neon.nvim",
-        priority = 1000,
-        enabled = false,
-        lazy = false,
-        opts = {},
-        config = function()
-            vim.cmd.colorscheme "neon-cherrykiss-night"
+            vim.cmd.colorscheme "nightblossom"
         end,
     },
 
