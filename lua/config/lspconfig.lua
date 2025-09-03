@@ -1,13 +1,16 @@
 local lspconfig = require('lspconfig')
 
-local capabilities = vim.tbl_deep_extend('force', {},
+local capabilities = vim.tbl_deep_extend('force',
+    {},
     vim.lsp.protocol.make_client_capabilities(),
     require('cmp_nvim_lsp').default_capabilities()
 )
 
+---@param client vim.lsp.Client
+---@param bufnr integer
 local function on_attach(client, bufnr)
     --  PERF: Format on save
-    if client.supports_method('textDocument/formatting') then
+    if client:supports_method('textDocument_formatting', bufnr) then
         vim.api.nvim_create_autocmd('bufWritePre', {
             buffer = bufnr,
             callback = function()
@@ -56,7 +59,7 @@ require("mason-tool-installer").setup {
 
 require("mason-lspconfig").setup {
     automatic_installation = false,
-    ensure_installed = {}, -- explicitly empty (handled by mason-tool-installer)
+    ensure_installed = {},
     handlers = {
         function(server_name)
             local server = servers[server_name] or {}
