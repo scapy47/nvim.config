@@ -1,5 +1,3 @@
-local lspconfig = require('lspconfig')
-
 local capabilities = vim.tbl_deep_extend('force',
     {},
     vim.lsp.protocol.make_client_capabilities(),
@@ -47,7 +45,8 @@ local servers = {
 for server_name, config in pairs(servers) do
     config.on_attach = on_attach
     config.capabilities = capabilities
-    lspconfig[server_name].setup(config)
+    vim.lsp.config(server_name, config)
+    vim.lsp.enable(server_name)
 end
 
 require("mason-tool-installer").setup {
@@ -65,7 +64,8 @@ require("mason-lspconfig").setup {
             local server = servers[server_name] or {}
             server.capabilities = capabilities
             server.on_attach = on_attach
-            lspconfig[server_name].setup(server)
+            vim.lsp.config(server_name, server)
+            vim.lsp.enable(server_name)
         end
     }
 }

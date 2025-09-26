@@ -242,9 +242,7 @@ require('lazy').setup({
             }
         },
         config = function()
-            local lspconfig = require('lspconfig')
-            lspconfig.lua_ls.setup {}
-
+            vim.lsp.enable("lua_ls")
             require "config.lspconfig"
         end
     },
