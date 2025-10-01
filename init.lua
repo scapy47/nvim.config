@@ -115,7 +115,7 @@ require('lazy').setup({
 
     -- PERF: Theme
     {
-        "Abstract-IDE/Abstract-cs",
+        "Scapy47/Abstract-cs",
         priority = 1000,
         enabled = true,
         lazy = false,
