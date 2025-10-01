@@ -114,20 +114,14 @@ require('lazy').setup({
     'tpope/vim-sleuth',
 
     -- PERF: Theme
-
     {
-        "rijulpaul/nightblossom.nvim",
+        "Abstract-IDE/Abstract-cs",
         priority = 1000,
         enabled = true,
         lazy = false,
-        opts = {
-            transparent = true,
-            integrations = {
-                treesitter = true,
-            },
-        },
-        config = function()
-            vim.cmd.colorscheme "nightblossom"
+        opts = {},
+        config = function(_, opts)
+            vim.cmd.colorscheme "abscs"
         end,
     },
 
