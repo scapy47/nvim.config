@@ -59,7 +59,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- omnicompletion
-vim.opt.completeopt = "noselect"
+vim.opt.completeopt = 'menuone,noselect,noinsert,longest,preview'
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
