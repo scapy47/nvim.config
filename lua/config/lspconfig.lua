@@ -38,7 +38,8 @@ local servers = {
             },
         },
     },
-    clangd = {}
+    clangd = {},
+    rust_analyzer = {}
 }
 
 
