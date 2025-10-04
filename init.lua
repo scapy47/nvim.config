@@ -118,13 +118,14 @@ require('lazy').setup({
 
     -- PERF: Theme
     {
-        "Scapy47/Abstract-cs",
+        "catppuccin/nvim",
+        name = "catppuccin",
         priority = 1000,
         enabled = true,
         lazy = false,
         opts = {},
         config = function(_, opts)
-            vim.cmd.colorscheme "abscs"
+            vim.cmd.colorscheme "catppuccin-mocha"
         end,
     },
 
