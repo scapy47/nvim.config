@@ -123,8 +123,13 @@ require('lazy').setup({
         priority = 1000,
         enabled = true,
         lazy = false,
-        opts = {},
+        opts = {
+            transparent_background = true,
+            no_italic = true,
+            float = { transparent = true },
+        },
         config = function(_, opts)
+            require("catppuccin").setup(opts)
             vim.cmd.colorscheme "catppuccin-mocha"
         end,
     },
