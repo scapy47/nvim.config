@@ -1,4 +1,4 @@
-
+![Example GIF](demo.gif)
 
 # Installation
 ![sh](https://skillicons.dev/icons?i=bash)
