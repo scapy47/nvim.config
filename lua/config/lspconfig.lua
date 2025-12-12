@@ -15,6 +15,14 @@ local function on_attach(client, bufnr)
                 vim.lsp.buf.format({ bufnr = bufnr, id = client.id })
             end
         })
+    else
+        vim.notify("Formatting is not supported. forcing autocommand", vim.log.levels.WARN)
+        vim.api.nvim_create_autocmd('bufWritePre', {
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format({ bufnr = bufnr, id = client.id })
+            end
+        })
     end
 end
 
