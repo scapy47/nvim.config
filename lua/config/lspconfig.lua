@@ -50,7 +50,8 @@ local servers = {
         },
     },
     clangd = {},
-    rust_analyzer = {}
+    rust_analyzer = {},
+    basedpyright = {},
 }
 
 

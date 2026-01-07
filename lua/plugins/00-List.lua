@@ -46,4 +46,9 @@ return {
             dashboard = require "config.startup_screen"
         }
     },
+    { 
+        "catgoose/nvim-colorizer.lua",
+        event = "BufReadPre",
+        opts = {},
+    }
 }
