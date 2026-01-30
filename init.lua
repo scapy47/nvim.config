@@ -72,11 +72,6 @@ vim.schedule(function()
     vim.opt.clipboard = 'unnamedplus'
 end)
 
--- load options from options file (opt.lua)
-for k, v in pairs(require "config.opt" or {}) do
-    vim.opt[k] = v
-end
-
 -------------------------------
 -- Diagnostic
 -------------------------------
