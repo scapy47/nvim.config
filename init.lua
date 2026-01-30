@@ -33,6 +33,9 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- border
+vim.opt.winborder = 'rounded'
+
 -- Signcolumn (scale/line on the side)
 vim.opt.signcolumn = 'yes'
 -- Decrease update time
@@ -66,13 +69,31 @@ vim.opt.scrolloff = 10
 
 vim.schedule(function()
     -- Sync clipboard between OS and Neovim
-    --vim.opt.clipboard = 'unnamedplus'
+    vim.opt.clipboard = 'unnamedplus'
 end)
 
 -- load options from options file (opt.lua)
 for k, v in pairs(require "config.opt" or {}) do
     vim.opt[k] = v
 end
+
+-------------------------------
+-- Diagnostic
+-------------------------------
+
+vim.diagnostic.config {
+    virtual_text = false,
+    virtual_lines = true,
+    signs = true,
+    update_in_insert = false,
+    severity_sort = true,
+    underline = true,
+    float = {
+        border = 'rounded',
+        severity_sort = true,
+        source = 'if_many',
+    }
+}
 
 -------------------------------
 -- Keymaps
@@ -195,10 +216,6 @@ require('lazy').setup({
                         require("luasnip").lsp_expand(args.body)
                     end
                 },
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered()
-                }
             }
         end,
     },
