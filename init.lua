@@ -77,10 +77,7 @@ end)
 -------------------------------
 
 vim.diagnostic.config {
-    virtual_text = false,
-    virtual_lines = true,
     signs = true,
-    update_in_insert = false,
     severity_sort = true,
     underline = true,
     float = {
