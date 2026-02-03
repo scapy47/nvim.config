@@ -1,5 +1,6 @@
 return {
     global = function()
+        vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })
     end,
     telescope = function()
         local builtin = require 'telescope.builtin'
