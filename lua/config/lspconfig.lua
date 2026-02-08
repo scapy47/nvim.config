@@ -42,6 +42,7 @@ local servers = {
                 },
                 workspace = {
                     library = {
+                        { path = 'nvim-lspconfig', words = { 'lspconfig' } },
                         vim.fn.expand('$VIMRUNTIME/lua'),
                         vim.fn.stdpath('config') .. '/lua',
                     },
@@ -50,7 +51,15 @@ local servers = {
         },
     },
     clangd = {},
-    rust_analyzer = {},
+    rust_analyzer = {
+        semanticHighlighting = {
+            punctuation = { enable = false },
+            strings     = { enable = false },
+            operator    = { enable = false },
+            keywords    = { enable = false },
+            numbers     = { enable = false },
+        }
+    },
     basedpyright = {},
 }
 

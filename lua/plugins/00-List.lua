@@ -46,9 +46,18 @@ return {
             dashboard = require "config.startup_screen"
         }
     },
-    { 
+    -- PERF: show color for hexcode and such
+    {
         "catgoose/nvim-colorizer.lua",
         event = "BufReadPre",
         opts = {},
+    },
+    -- PERF: code screenshot
+    {
+        "ellisonleao/carbon-now.nvim",
+        lazy = true,
+        cmd = "CarbonNow",
+        ---@param opts cn.ConfigSchema
+        opts = {}
     }
 }
