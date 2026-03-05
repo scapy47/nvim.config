@@ -52,12 +52,18 @@ local servers = {
     },
     clangd = {},
     rust_analyzer = {
-        semanticHighlighting = {
-            punctuation = { enable = false },
-            strings     = { enable = false },
-            operator    = { enable = false },
-            keywords    = { enable = false },
-            numbers     = { enable = false },
+        settings = {
+            checkOnSave = {
+                command = "clippy"
+            },
+
+            semanticHighlighting = {
+                punctuation = { enable = false },
+                strings     = { enable = false },
+                operator    = { enable = false },
+                keywords    = { enable = false },
+                numbers     = { enable = false },
+            }
         }
     },
     basedpyright = {},
