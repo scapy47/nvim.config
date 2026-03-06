@@ -1,7 +1,7 @@
 local capabilities = vim.tbl_deep_extend('force',
     {},
     vim.lsp.protocol.make_client_capabilities(),
-    require('cmp_nvim_lsp').default_capabilities()
+    require('blink.cmp').get_lsp_capabilities()
 )
 
 ---@param client vim.lsp.Client
@@ -53,16 +53,18 @@ local servers = {
     clangd = {},
     rust_analyzer = {
         settings = {
-            checkOnSave = {
-                command = "clippy"
-            },
-
-            semanticHighlighting = {
-                punctuation = { enable = false },
-                strings     = { enable = false },
-                operator    = { enable = false },
-                keywords    = { enable = false },
-                numbers     = { enable = false },
+            ["rust-analyzer"] = {
+                checkOnSave = true,
+                check = {
+                    command = "clippy"
+                },
+                semanticHighlighting = {
+                    punctuation = { enable = false },
+                    strings = { enable = false },
+                    operator = { enable = false },
+                    keywords = { enable = false },
+                    numbers = { enable = false },
+                }
             }
         }
     },

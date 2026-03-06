@@ -69,7 +69,7 @@ vim.opt.scrolloff = 10
 
 vim.schedule(function()
     -- Sync clipboard between OS and Neovim
-    vim.opt.clipboard = 'unnamedplus'
+    -- vim.opt.clipboard = 'unnamedplus'
 end)
 
 -------------------------------
@@ -160,57 +160,25 @@ require('lazy').setup({
 
     -- PERF: Completion
     {
-        "hrsh7th/nvim-cmp",
-        event = 'InsertEnter',
-        dependencies = {
-            --[[ completion sources ]]
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-nvim-lua",
-            {
-                ---[[ snippet engine ]]
-                "L3MON4D3/LuaSnip",
-                build = "make install_jsregexp",
-                dependencies = {
-                    ---[[ snippet engine to completion engine/framework adapter ]]
-                    "saadparwaiz1/cmp_luasnip",
-                    {
-                        ---[[ snippets library ]]
-                        "rafamadriz/friendly-snippets",
-                        config = function()
-                            require("luasnip.loaders.from_vscode").lazy_load()
-                        end
-                    }
-                }
+        'saghen/blink.cmp',
+        dependencies = { 'rafamadriz/friendly-snippets' },
+        version = '1.*',
+        ---@module 'blink.cmp'
+        ---@type blink.cmp.Config
+        opts = {
+            keymap = { preset = 'default' },
+            appearance = {
+                nerd_font_variant = 'mono'
             },
+            completion = { documentation = { auto_show = true } },
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+            },
+            fuzzy = { implementation = "prefer_rust_with_warning" }
         },
-        config = function()
-            local cmp = require "cmp"
-            cmp.setup {
-                mapping = cmp.mapping.preset.insert {
-
-                    ['<C-n>'] = cmp.mapping.select_next_item(),
-                    ['<C-p>'] = cmp.mapping.select_prev_item(),
-                    ['<C-y>'] = cmp.mapping.confirm { select = true },
-
-                    require("config.keymap").completion()
-                },
-                sources = {
-                    { name = "nvim_lsp" },
-                    { name = "buffer",  keyword_length = 4 },
-                    { name = "path" },
-                    { name = "nvim_lua" },
-                    { name = 'luasnip', keyword_length = 2 }
-                },
-                snippet = {
-                    expand = function(args)
-                        require("luasnip").lsp_expand(args.body)
-                    end
-                },
-            }
-        end,
-    },
+        opts_extend = { "sources.default" }
+    }
+    ,
 
     -- PERF: Syntex Parsing
     {
@@ -240,7 +208,19 @@ require('lazy').setup({
                 opts = {},
                 dependencies = {
                     'williamboman/mason-lspconfig.nvim',
-                    'WhoIsSethDaniel/mason-tool-installer.nvim'
+                    'WhoIsSethDaniel/mason-tool-installer.nvim',
+                    {
+                        'j-hui/fidget.nvim',
+                        enabled = false,
+                        opts = {
+                            notification = {
+                                window = {
+                                    border = "rounded",
+                                    winblend = 0,
+                                },
+                            },
+                        }
+                    },
                 },
             },
             {
