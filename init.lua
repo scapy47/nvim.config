@@ -42,6 +42,8 @@ vim.opt.signcolumn = 'yes'
 vim.opt.updatetime = 250
 -- Decrease mapped sequence wait time
 vim.opt.timeoutlen = 300
+-- background
+vim.opt.background = "dark"
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
