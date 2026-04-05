@@ -103,26 +103,66 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 require("config.keymap").global()
 
 -------------------------------
--- Plugins Manager & Plugins
+-- Plugins
 -------------------------------
 
+--- convert short github links into full links
+-- ---@param str string
+-- ---@return string
+-- local gh = function(str) return "https://github.com/" .. str end
+
+vim.pack.add {
+    -- gh "maxmx03/fluoromachine.nvim",
+    "https://github.com/folke/lazy.nvim.git",
+}
+
+-- ---@type fluoromachine
+-- require("fluoromachine").setup {
+--     glow = true,
+--     theme = "delta",
+--     transparent = true,
+--     overrides = {
+--         ['@comment'] = { italic = false },
+--         ['@constant'] = { italic = false },
+--         ['@constant.builtin'] = { italic = false },
+--         ['@constant.macro'] = { italic = false },
+--         ['@constructor'] = { italic = false },
+--         ['@function'] = { italic = false },
+--         ['@function.builtin'] = { italic = false },
+--         ['@function.macro'] = { italic = false },
+--         ['@keyword'] = { italic = false },
+--         ['@keyword.function'] = { italic = false },
+--         ['@keyword.operator'] = { italic = false },
+--         ['@keyword.return'] = { italic = false },
+--         ['@parameter'] = { italic = false },
+--         ['@string'] = { italic = false },
+--         ['@string.regex'] = { italic = false },
+--         ['@tag'] = { italic = false },
+--         ['@type'] = { italic = false },
+--         ['@type.definition'] = { italic = false },
+--         ['@variable'] = { italic = false },
+--         ['@variable.builtin'] = { italic = false },
+--     }
+-- }
+-- vim.cmd.colorscheme "fluoromachine"
+
 -- [[ `lazy.nvim` plugin manager ]]
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-    local out = vim.fn.system {
-        'git',
-        'clone',
-        '--filter=blob:none',
-        '--branch=stable',
-        lazyrepo,
-        lazypath
-    }
-    if vim.v.shell_error ~= 0 then
-        error('Error cloning lazy.nvim:\n' .. out)
-    end
-end ---@diagnostic disable-next-line: undefined-field
-vim.opt.rtp:prepend(lazypath)
+-- local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+-- if not (vim.uv or vim.loop).fs_stat(lazypath) then
+--     local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+--     local out = vim.fn.system {
+--         'git',
+--         'clone',
+--         '--filter=blob:none',
+--         '--branch=stable',
+--         lazyrepo,
+--         lazypath
+--     }
+--     if vim.v.shell_error ~= 0 then
+--         error('Error cloning lazy.nvim:\n' .. out)
+--     end
+-- end ---@diagnostic disable-next-line: undefined-field
+-- vim.opt.rtp:prepend(lazypath)
 
 -- [[ lazy.nvim and plugins setup ]]
 require('lazy').setup({
@@ -136,7 +176,7 @@ require('lazy').setup({
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
-        enabled = true,
+        enabled = false,
         lazy = false,
         opts = {
             transparent_background = true,
@@ -147,6 +187,43 @@ require('lazy').setup({
             require("catppuccin").setup(opts)
             vim.cmd.colorscheme "catppuccin-mocha"
         end,
+    },
+    {
+        "maxmx03/fluoromachine.nvim",
+        priority = 1000,
+        lazy = false,
+        opts = {
+            glow = true,
+            theme = "delta",
+            transparent = true,
+            overrides = {
+                ['@comment'] = { italic = false },
+                ['@constant'] = { italic = false },
+                ['@constant.builtin'] = { italic = false },
+                ['@constant.macro'] = { italic = false },
+                ['@constructor'] = { italic = false },
+                ['@function'] = { italic = false },
+                ['@function.builtin'] = { italic = false },
+                ['@function.macro'] = { italic = false },
+                ['@keyword'] = { italic = false },
+                ['@keyword.function'] = { italic = false },
+                ['@keyword.operator'] = { italic = false },
+                ['@keyword.return'] = { italic = false },
+                ['@parameter'] = { italic = false },
+                ['@string'] = { italic = false },
+                ['@string.regex'] = { italic = false },
+                ['@tag'] = { italic = false },
+                ['@type'] = { italic = false },
+                ['@type.definition'] = { italic = false },
+                ['@variable'] = { italic = false },
+                ['@variable.builtin'] = { italic = false },
+            }
+        },
+        config = function(_, opts)
+            require("fluoromachine").setup(opts)
+            vim.cmd.colorscheme "fluoromachine"
+        end,
+
     },
 
     -- PERF: Icons
