@@ -78,24 +78,3 @@ for server_name, config in pairs(servers) do
     vim.lsp.config(server_name, config)
     vim.lsp.enable(server_name)
 end
-
-require("mason-tool-installer").setup {
-    ensure_installed = {},
-    integrations = {
-        ['mason-lspconfig'] = true
-    }
-}
-
-require("mason-lspconfig").setup {
-    automatic_installation = false,
-    ensure_installed = {},
-    handlers = {
-        function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = capabilities
-            server.on_attach = on_attach
-            vim.lsp.config(server_name, server)
-            vim.lsp.enable(server_name)
-        end
-    }
-}
