@@ -74,6 +74,9 @@ vim.schedule(function()
     -- vim.opt.clipboard = 'unnamedplus'
 end)
 
+-- enable lua bitecode caching
+vim.loader.enable()
+
 -------------------------------
 -- Diagnostic
 -------------------------------
