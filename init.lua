@@ -192,39 +192,19 @@ require('lazy').setup({
         end,
     },
     {
-        "maxmx03/fluoromachine.nvim",
+        "rose-pine/neovim",
         priority = 1000,
         lazy = false,
         opts = {
-            glow = true,
-            theme = "delta",
-            transparent = true,
-            overrides = {
-                ['@comment'] = { italic = false },
-                ['@constant'] = { italic = false },
-                ['@constant.builtin'] = { italic = false },
-                ['@constant.macro'] = { italic = false },
-                ['@constructor'] = { italic = false },
-                ['@function'] = { italic = false },
-                ['@function.builtin'] = { italic = false },
-                ['@function.macro'] = { italic = false },
-                ['@keyword'] = { italic = false },
-                ['@keyword.function'] = { italic = false },
-                ['@keyword.operator'] = { italic = false },
-                ['@keyword.return'] = { italic = false },
-                ['@parameter'] = { italic = false },
-                ['@string'] = { italic = false },
-                ['@string.regex'] = { italic = false },
-                ['@tag'] = { italic = false },
-                ['@type'] = { italic = false },
-                ['@type.definition'] = { italic = false },
-                ['@variable'] = { italic = false },
-                ['@variable.builtin'] = { italic = false },
-            }
+            styles = {
+                bold = true,
+                italic = false,
+                transparency = true,
+            },
         },
         config = function(_, opts)
-            require("fluoromachine").setup(opts)
-            vim.cmd.colorscheme "fluoromachine"
+            require("rose-pine").setup(opts)
+            vim.cmd.colorscheme "rose-pine"
         end,
 
     },
